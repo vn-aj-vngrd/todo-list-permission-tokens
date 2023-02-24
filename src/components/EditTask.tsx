@@ -6,6 +6,7 @@ import OutsideClickHandler from "react-outside-click-handler";
 
 type FormValues = {
   title: string;
+  description: string;
   date: string;
 };
 
@@ -34,6 +35,8 @@ const EditTask = () => {
   } = useForm<FormValues>({
     defaultValues: {
       title: taskEdit?.title || "",
+      description: taskEdit?.description || "",
+      date: taskEdit?.date || "",
     },
     resolver,
   });
@@ -41,6 +44,7 @@ const EditTask = () => {
   useEffect(() => {
     reset({
       title: taskEdit?.title || "",
+      description: taskEdit?.description || "",
       date: taskEdit?.date || "",
     });
   }, [reset, taskEdit]);
@@ -48,6 +52,7 @@ const EditTask = () => {
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     updateTask({
       id: taskEdit?.id || "0",
+      description: data.description,
       title: data.title,
       date: data.date,
       isCompleted: taskEdit?.isCompleted || false,
@@ -63,7 +68,7 @@ const EditTask = () => {
           handleShowEditTask(false);
         }}
       >
-        <div className="flex items-center justify-between rounded-t-lg border-b border-[#333] bg-[#161B22] py-4 px-4">
+        <div className="flex items-center space-x-4 rounded-t-lg border-b border-[#333] bg-[#161B22] py-4 px-4">
           <button
             className="cursor-pointer"
             onClick={() => handleShowEditTask(false)}
@@ -91,6 +96,14 @@ const EditTask = () => {
             <input
               type="date"
               {...register("date")}
+              className="rounded-md border border-[#333] bg-[#161B22] px-2 py-1.5 text-white"
+            />
+          </div>
+
+          <div className="flex flex-col space-y-2">
+            <label className="text-[#999]">Description</label>
+            <input
+              {...register("description")}
               className="rounded-md border border-[#333] bg-[#161B22] px-2 py-1.5 text-white"
             />
           </div>

@@ -5,6 +5,7 @@ import { useAppStore } from "~/store";
 
 type FormValues = {
   title: string;
+  description: string;
   date: string;
 };
 
@@ -15,6 +16,7 @@ const AddTask = () => {
   useEffect(() => {
     reset({
       title: "",
+      description: "",
       date: "",
     });
   }, [reset, tasks]);
@@ -24,6 +26,7 @@ const AddTask = () => {
     addTask({
       id: (tasks.length + 1).toString(),
       title: data.title,
+      description: "",
       date: data.date,
       isCompleted: false,
     });

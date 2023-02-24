@@ -2,12 +2,14 @@ export const taskData = [
   {
     id: "1",
     title: "Doctors Appointment",
+    description: "Go to the doctors at 3pm",
     date: "2023-03-01",
     isCompleted: true,
   },
   {
     id: "2",
     title: "Meeting at School",
+    description: "Go to school for a meeting",
     date: "",
     isCompleted: false,
   },
@@ -15,6 +17,7 @@ export const taskData = [
   {
     id: "3",
     title: "Food Shopping",
+    description: "Go to the supermarket to buy food",
     date: "2023-03-01",
     isCompleted: false,
   },

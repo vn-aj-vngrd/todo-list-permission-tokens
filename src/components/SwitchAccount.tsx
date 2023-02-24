@@ -29,7 +29,7 @@ const SwitchAccount = () => {
           handleShowSwitchAccount(false);
         }}
       >
-        <div className="flex items-center justify-between rounded-t-lg border-b border-[#333] bg-[#161B22] py-4 px-4">
+        <div className="flex items-center space-x-4 rounded-t-lg border-b border-[#333] bg-[#161B22] py-4 px-4">
           <button
             className="cursor-pointer"
             onClick={() => handleShowSwitchAccount(false)}
