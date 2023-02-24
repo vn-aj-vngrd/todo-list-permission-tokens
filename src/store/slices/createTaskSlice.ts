@@ -1,7 +1,7 @@
 import { type StateCreator } from "zustand";
 import { taskData } from "../../data";
 
-export interface Task {
+interface Task {
   id: string;
   title: string;
   date: string;

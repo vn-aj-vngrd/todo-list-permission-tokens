@@ -1,24 +1,25 @@
 import { type StateCreator } from "zustand";
+import { accountData } from "~/data";
 
-export interface AccountSlice {
-  account: {
-    accountType: string;
-  };
-  setAccountType: (accountType: string) => void;
+interface User {
+  id: string;
+  accountType: string;
+  description: string;
+  permissions: string[];
+}
+
+export interface AuthSlice {
+  user: User | null;
+  setUser: (user: User) => void;
   isShowSwitchAccount: boolean;
   handleShowSwitchAccount: (b: boolean) => void;
 }
 
-export const createAccountSlice: StateCreator<AccountSlice> = (set) => ({
-  account: {
-    accountType: "User",
-  },
-  setAccountType: (accountType) => {
-    set((state) => ({
-      account: {
-        ...state.account,
-        accountType,
-      },
+export const createAuthSlice: StateCreator<AuthSlice> = (set) => ({
+  user: accountData[2] ? accountData[2] : null,
+  setUser: (user) => {
+    set(() => ({
+      user,
     }));
   },
   isShowSwitchAccount: false,

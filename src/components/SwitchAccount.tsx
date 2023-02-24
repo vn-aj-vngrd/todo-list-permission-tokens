@@ -6,29 +6,15 @@ import {
 import { useEffect, useState } from "react";
 import { useAppStore } from "~/store";
 import OutsideClickHandler from "react-outside-click-handler";
-
-const roles = [
-  {
-    type: "Guest",
-    description: "Guests can only view tasks",
-  },
-  {
-    type: "User",
-    description: "Users can create and edit tasks",
-  },
-  {
-    type: "Admin",
-    description: "Admins can create, edit, and delete tasks",
-  },
-];
+import { accountData } from "~/data";
 
 const SwitchAccount = () => {
-  const { account, setAccountType, handleShowSwitchAccount } = useAppStore();
+  const { user, setUser, handleShowSwitchAccount } = useAppStore();
   const [isShowRoleInfo, setIsShowRoleInfo] = useState([false, false, false]);
 
   useEffect(() => {
     setIsShowRoleInfo([false, false, false]);
-  }, [account]);
+  }, [user]);
 
   const handleShowRoleInfo = (i: number) => {
     const newIsShowRoleInfo = [...isShowRoleInfo];
@@ -53,11 +39,11 @@ const SwitchAccount = () => {
           <h3 className="font-bold">Switch Account</h3>
         </div>
         <div className="space-y-4 py-4 px-4">
-          {roles?.map((role, i) => (
+          {accountData?.map((account, i) => (
             <div
               key={i}
               className={`relative w-full flex-col items-center space-y-1 rounded-md border border-[#333] px-4 py-2  ${
-                account?.accountType === role.type
+                user?.accountType === account.accountType
                   ? "bg-[#1F2937]"
                   : "bg-[#161B22] hover:bg-[#1F2937]"
               }`}
@@ -65,13 +51,13 @@ const SwitchAccount = () => {
               <div className="flex items-center justify-center">
                 <button
                   className="flex-1 text-start"
-                  disabled={account?.accountType === role.type}
+                  disabled={user?.accountType === account.accountType}
                   onClick={() => {
-                    setAccountType(role.type);
+                    setUser(account);
                     handleShowSwitchAccount(false);
                   }}
                 >
-                  <h3>{role.type}</h3>
+                  <h3>{account.accountType}</h3>
                 </button>
 
                 <button
@@ -87,7 +73,9 @@ const SwitchAccount = () => {
               </div>
               {isShowRoleInfo[i] && (
                 <div>
-                  <p className="text-xs text-[#A3A3A3]">{role.description}</p>
+                  <p className="text-xs text-[#A3A3A3]">
+                    {account.description}
+                  </p>
                 </div>
               )}
             </div>

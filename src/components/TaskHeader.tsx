@@ -1,8 +1,7 @@
 import { useAppStore } from "../store";
 
 const TaskHeader = () => {
-  const { account, handleShowSwitchAccount, handleShowEditTask } =
-    useAppStore();
+  const { user, handleShowSwitchAccount, handleShowEditTask } = useAppStore();
 
   return (
     <div className="flex items-center justify-between rounded-t-lg border-b border-[#333] bg-[#161B22] py-4 px-4">
@@ -22,7 +21,7 @@ const TaskHeader = () => {
             <span className="absolute inline-flex h-3.5 w-3.5 animate-ping rounded-full bg-green-400 opacity-75"></span>
             <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500"></span>
           </span>
-          <p className="text-xl font-bold">{account?.accountType}</p>
+          <p className="text-xl font-bold">{user?.accountType}</p>
         </div>
         <button
           className="cursor-pointer text-xs"

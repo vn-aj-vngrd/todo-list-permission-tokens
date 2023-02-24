@@ -19,3 +19,24 @@ export const taskData = [
     isCompleted: false,
   },
 ];
+
+export const accountData = [
+  {
+    id: "1",
+    accountType: "Admin",
+    description: "Admin can do everything",
+    permissions: ["TASK_CREATE", "TASK_UPDATE", "TASK_DELETE", "TASK_READ"],
+  },
+  {
+    id: "2",
+    accountType: "User",
+    description: "User can do everything except delete",
+    permissions: ["TASK_CREATE", "TASK_UPDATE", "TASK_READ"],
+  },
+  {
+    id: "3",
+    accountType: "Guest",
+    description: "Guest can only read",
+    permissions: ["TASK_READ"],
+  },
+];
