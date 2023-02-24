@@ -9,9 +9,10 @@ import AddTask from "~/components/AddTask";
 import SwitchAccount from "~/components/SwitchAccount";
 import { useAppStore } from "~/store";
 import EditTask from "~/components/EditTask";
+import { verifyPermission } from "~/utils";
 
 const Home: NextPage = () => {
-  const { tasks, isShowEditTask, isShowSwitchAccount } = useAppStore();
+  const { tasks, isShowEditTask, isShowSwitchAccount, user } = useAppStore();
 
   return (
     <>
@@ -27,8 +28,9 @@ const Home: NextPage = () => {
                 <TaskCard key={task.id} task={task} />
               ))}
           </div>
-
-          <AddTask />
+          {verifyPermission(user?.permissions as string[], "TASK_CREATE") && (
+            <AddTask />
+          )}
         </div>
 
         {isShowSwitchAccount && <SwitchAccount />}

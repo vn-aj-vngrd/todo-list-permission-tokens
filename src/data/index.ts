@@ -2,7 +2,7 @@ export const taskData = [
   {
     id: "1",
     title: "Doctors Appointment",
-    date: "2017-06-01",
+    date: "2023-03-01",
     isCompleted: true,
   },
   {
@@ -15,7 +15,7 @@ export const taskData = [
   {
     id: "3",
     title: "Food Shopping",
-    date: "2017-06-01",
+    date: "2023-03-01",
     isCompleted: false,
   },
 ];

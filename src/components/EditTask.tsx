@@ -96,9 +96,12 @@ const EditTask = () => {
           </div>
 
           <div className="absolute bottom-4 w-full">
-            <div className="flex w-[90%] items-center justify-center rounded-md border border-[#333] bg-[#161B22] px-4 py-3">
-              <button type="submit">Save Changes</button>
-            </div>
+            <button
+              className="flex w-[90%] items-center justify-center rounded-md border border-[#333] bg-[#161B22] px-4 py-3.5 hover:bg-[#1F2937]"
+              type="submit"
+            >
+              Save Changes
+            </button>
           </div>
         </form>
       </OutsideClickHandler>

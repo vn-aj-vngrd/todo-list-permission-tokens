@@ -24,7 +24,7 @@ const TaskHeader = () => {
           <p className="text-xl font-bold">{user?.accountType}</p>
         </div>
         <button
-          className="cursor-pointer text-xs"
+          className="flex cursor-pointer text-sm "
           onClick={() => {
             handleShowEditTask(false);
             handleShowSwitchAccount(true);

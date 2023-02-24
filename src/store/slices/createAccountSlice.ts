@@ -1,7 +1,7 @@
 import { type StateCreator } from "zustand";
 import { accountData } from "~/data";
 
-interface User {
+export interface User {
   id: string;
   accountType: string;
   description: string;
