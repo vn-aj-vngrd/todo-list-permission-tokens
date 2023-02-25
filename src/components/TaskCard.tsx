@@ -1,4 +1,5 @@
 import {
+  ArrowPathIcon,
   CheckCircleIcon,
   ChevronDownIcon,
   PencilSquareIcon,
@@ -19,6 +20,7 @@ const TaskCard = ({ task }: Props) => {
     handleShowSwitchAccount,
     updateTask,
     deleteTask,
+    restoreTask,
     handleTaskEdit,
     user,
   } = useAppStore();
@@ -79,14 +81,36 @@ const TaskCard = ({ task }: Props) => {
             </button>
           )}
 
-          {verifyPermission(user?.permissions as string[], "TASK_DELETE") && (
-            <button
-              onClick={() => {
-                deleteTask(task.id);
-              }}
-            >
-              <TrashIcon className="h-4 w-4 fill-white" />
-            </button>
+          {task.isDeleted ? (
+            <>
+              {verifyPermission(
+                user?.permissions as string[],
+                "TASK_RESTORE"
+              ) && (
+                <button
+                  onClick={() => {
+                    restoreTask(task.id);
+                  }}
+                >
+                  <ArrowPathIcon className="h-4 w-4 fill-white" />
+                </button>
+              )}
+            </>
+          ) : (
+            <>
+              {verifyPermission(
+                user?.permissions as string[],
+                "TASK_DELETE"
+              ) && (
+                <button
+                  onClick={() => {
+                    deleteTask(task.id);
+                  }}
+                >
+                  <TrashIcon className="h-4 w-4 fill-white" />
+                </button>
+              )}
+            </>
           )}
 
           <button

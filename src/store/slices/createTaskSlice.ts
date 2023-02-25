@@ -7,13 +7,15 @@ export interface Task {
   date: string;
   description: string;
   isCompleted: boolean;
+  isDeleted: boolean;
 }
 
 export interface TaskSlice {
   tasks: Task[];
   addTask: (task: Task) => void;
-  deleteTask: (id: string) => void;
   updateTask: (task: Task) => void;
+  deleteTask: (id: string) => void;
+  restoreTask: (id: string) => void;
   isShowEditTask: boolean;
   handleShowEditTask: (b: boolean) => void;
   taskEdit: Task | null;
@@ -27,14 +29,23 @@ export const createTaskSlice: StateCreator<TaskSlice> = (set) => ({
       tasks: [...state.tasks, task],
     }));
   },
-  deleteTask: (id) => {
-    set((state) => ({
-      tasks: state.tasks.filter((task) => task.id !== id),
-    }));
-  },
   updateTask: (task) => {
     set((state) => ({
       tasks: state.tasks.map((t) => (t.id === task.id ? task : t)),
+    }));
+  },
+  deleteTask: (id) => {
+    set((state) => ({
+      tasks: state.tasks.map((t) =>
+        t.id === id ? { ...t, isDeleted: true } : t
+      ),
+    }));
+  },
+  restoreTask: (id) => {
+    set((state) => ({
+      tasks: state.tasks.map((t) =>
+        t.id === id ? { ...t, isDeleted: false } : t
+      ),
     }));
   },
   isShowEditTask: false,

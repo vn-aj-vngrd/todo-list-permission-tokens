@@ -25,6 +25,10 @@ const categories = [
     name: "Completed",
     color: "bg-green-500",
   },
+  {
+    name: "Deleted",
+    color: "bg-red-500",
+  },
 ];
 
 const Home: NextPage = () => {
@@ -39,20 +43,29 @@ const Home: NextPage = () => {
           <TaskHeader />
 
           <div className="flex items-center justify-start px-4 pt-4">
-            {categories.map((_category, id) => (
-              <button
-                onClick={() => setCategory(_category)}
-                key={id}
-                className="mr-5 flex items-center"
-              >
-                <div
-                  className={`mr-2 h-4 w-4 rounded-full ${
-                    _category === category ? _category.color : "bg-[#999]"
-                  } `}
-                />
-                <p className="text-sm">{_category.name}</p>
-              </button>
-            ))}
+            {categories
+              .filter(
+                (category) =>
+                  category.name !== "Deleted" ||
+                  verifyPermission(
+                    user?.permissions as string[],
+                    "TASK_VIEW_DELETED"
+                  )
+              )
+              .map((_category, id) => (
+                <button
+                  onClick={() => setCategory(_category)}
+                  key={id}
+                  className="mr-5 flex items-center"
+                >
+                  <div
+                    className={`mr-2 h-4 w-4 rounded-full ${
+                      _category === category ? _category.color : "bg-[#999]"
+                    } `}
+                  />
+                  <p className="text-sm">{_category.name}</p>
+                </button>
+              ))}
           </div>
 
           {verifyPermission(user?.permissions as string[], "TASK_READ") && (
@@ -60,9 +73,14 @@ const Home: NextPage = () => {
               {tasks
                 ?.filter(
                   (task) =>
-                    category?.name === "All" ||
-                    (category?.name === "Pending" && !task.isCompleted) ||
-                    (category?.name === "Completed" && task.isCompleted)
+                    (category?.name === "All" && !task.isDeleted) ||
+                    (category?.name === "Pending" &&
+                      !task.isCompleted &&
+                      !task.isDeleted) ||
+                    (category?.name === "Completed" &&
+                      task.isCompleted &&
+                      !task.isDeleted) ||
+                    (category?.name === "Deleted" && task.isDeleted)
                 )
                 .sort((a, b) => a.date.localeCompare(b.date))
                 .map((task) => (

@@ -29,6 +29,7 @@ const AddTask = () => {
       description: "",
       date: data.date,
       isCompleted: false,
+      isDeleted: false,
     });
   };
 
@@ -47,12 +48,13 @@ const AddTask = () => {
           <div className="flex-1">
             <input
               {...register("title")}
+              autoComplete="off"
               className="w-full"
               placeholder="Add a new task"
             />
           </div>
 
-          <input {...register("date")} type="date" />
+          <input {...register("date")} type="date" className="ml-3" />
         </form>
       </div>
     </div>

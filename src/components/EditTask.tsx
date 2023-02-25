@@ -51,11 +51,12 @@ const EditTask = () => {
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     updateTask({
-      id: taskEdit?.id || "0",
+      id: taskEdit?.id as string,
       description: data.description,
       title: data.title,
       date: data.date,
       isCompleted: taskEdit?.isCompleted || false,
+      isDeleted: taskEdit?.isCompleted || false,
     });
     handleShowEditTask(false);
     console.log(data);
