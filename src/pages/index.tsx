@@ -31,20 +31,6 @@ const Home: NextPage = () => {
   const { tasks, isShowEditTask, isShowSwitchAccount, user } = useAppStore();
   const [category, setCategory] = useState(categories[0]);
 
-  const handleFilter = (category: string) => {
-    if (category === "All") {
-      return tasks;
-    }
-
-    if (category === "Pending") {
-      return tasks?.filter((task) => !task.isCompleted);
-    }
-
-    if (category === "Completed") {
-      return tasks?.filter((task) => task.isCompleted);
-    }
-  };
-
   return (
     <>
       <Meta />
