@@ -46,7 +46,7 @@ export const accountData = [
     id: "1",
     accountType: "Admin",
     description:
-      "Admin can create, update, read, delete, read deleted and restore task.",
+      "Admin can create, update, read, delete, read deleted and restore tasks.",
     permissions: [
       "TASK_CREATE",
       "TASK_READ",
