@@ -49,7 +49,7 @@ const Home: NextPage = () => {
     <>
       <Meta />
       <main className="flex min-h-screen items-center justify-center space-x-2">
-        <div className="relative h-[586px] max-w-5xl flex-1 rounded-lg border border-[#333] bg-[#0E1117]">
+        <div className="relative h-[626px] max-w-5xl flex-1 rounded-lg border border-[#333] bg-[#0E1117]">
           <TaskHeader />
 
           <div className="flex items-center justify-start px-4 pt-4">
@@ -70,7 +70,7 @@ const Home: NextPage = () => {
           </div>
 
           {verifyPermission(user?.permissions as string[], "TASK_READ") && (
-            <div className="flex h-[420px] flex-col space-y-4 overflow-auto px-4 py-4">
+            <div className="mt-4 flex h-[390px] flex-col space-y-4 overflow-auto px-4">
               {tasks
                 ?.filter(
                   (task) =>

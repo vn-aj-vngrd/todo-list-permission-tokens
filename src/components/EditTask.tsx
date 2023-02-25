@@ -62,7 +62,7 @@ const EditTask = () => {
   };
 
   return (
-    <div className="relative h-[586px] max-w-xs flex-1 rounded-lg border border-[#333] bg-[#0E1117]">
+    <div className="relative h-[626px] max-w-xs flex-1 rounded-lg border border-[#333] bg-[#0E1117]">
       <OutsideClickHandler
         onOutsideClick={() => {
           handleShowEditTask(false);

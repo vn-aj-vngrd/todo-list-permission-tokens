@@ -30,7 +30,7 @@ const TaskCard = ({ task }: Props) => {
   };
 
   return (
-    <div className="flex-col items-center  rounded-md border border-[#333] bg-[#161B22] px-4 py-2">
+    <div className="flex-col items-center  rounded-md border border-[#333] bg-[#1F2937] px-4 py-2">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
           {task.isCompleted ? (
