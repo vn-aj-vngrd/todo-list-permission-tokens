@@ -38,8 +38,12 @@ const Home: NextPage = () => {
   return (
     <>
       <Meta />
-      <main className="flex min-h-screen items-center justify-center space-x-2">
-        <div className="relative h-[626px] max-w-5xl flex-1 rounded-lg border border-[#333] bg-[#0E1117]">
+      <main className="flex min-h-screen items-center justify-center space-x-2 px-4 md:px-0">
+        <div
+          className={`relative h-[626px] max-w-5xl flex-1 rounded-lg border border-[#333] bg-[#0E1117]
+          ${isShowSwitchAccount || isShowEditTask ? "hidden md:block" : ""}
+          `}
+        >
           <TaskHeader />
 
           <div className="flex items-center justify-start px-4 pt-4">
@@ -63,7 +67,7 @@ const Home: NextPage = () => {
                       _category === category ? _category.color : "bg-[#999]"
                     } `}
                   />
-                  <p className="text-sm">{_category.name}</p>
+                  <p className="text-xs md:text-sm">{_category.name}</p>
                 </button>
               ))}
           </div>

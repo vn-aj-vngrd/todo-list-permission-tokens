@@ -49,8 +49,8 @@ const AddTask = () => {
             <input
               {...register("title")}
               autoComplete="off"
-              className="w-full"
-              placeholder="Add a new task"
+              className="w-full text-sm md:text-base"
+              placeholder="Add a task"
             />
           </div>
 

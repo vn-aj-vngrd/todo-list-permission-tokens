@@ -60,9 +60,9 @@ const TaskCard = ({ task }: Props) => {
 
           <div className="flex-col items-center">
             {task.isCompleted ? (
-              <del className="text-lg">{task.title}</del>
+              <del className="text-base md:text-lg">{task.title}</del>
             ) : (
-              <p className="text-lg">{task.title}</p>
+              <p className="text-base md:text-lg">{task.title}</p>
             )}
 
             <p className="text-xs text-[#999]">{task.date}</p>

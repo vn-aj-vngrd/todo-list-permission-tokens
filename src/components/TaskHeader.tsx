@@ -6,8 +6,8 @@ const TaskHeader = () => {
   return (
     <div className="flex items-center justify-between rounded-t-lg border-b border-[#333] bg-[#161B22] py-4 px-4">
       <div className="space-y-1">
-        <h1 className="text-4xl font-bold">My Tasks</h1>
-        <h3 className="text-sm">
+        <h1 className="text-2xl font-bold md:text-4xl">My Tasks</h1>
+        <h3 className="text-xs md:text-sm">
           {new Date().toLocaleDateString("en-US", {
             weekday: "long",
             month: "long",
@@ -21,10 +21,10 @@ const TaskHeader = () => {
             <span className="absolute inline-flex h-3.5 w-3.5 animate-ping rounded-full bg-green-400 opacity-75"></span>
             <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500"></span>
           </span>
-          <p className="text-xl font-bold">{user?.accountType}</p>
+          <p className="text-sm font-bold md:text-xl">{user?.accountType}</p>
         </div>
         <button
-          className="flex cursor-pointer text-sm "
+          className="flex cursor-pointer text-xs md:text-sm"
           onClick={() => {
             handleShowEditTask(false);
             handleShowSwitchAccount(true);

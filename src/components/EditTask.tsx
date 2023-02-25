@@ -86,7 +86,7 @@ const EditTask = () => {
             <label className="text-[#999]">Title</label>
             <input
               {...register("title")}
-              className="rounded-md border border-[#333] bg-[#161B22] px-2 py-1.5 text-white"
+              className="block w-full rounded-md border border-[#333] bg-[#161B22] px-2 py-1.5 text-white"
             />
             {errors?.title && <p className="text-sm">{errors.title.message}</p>}
           </div>
@@ -97,7 +97,7 @@ const EditTask = () => {
             <input
               type="date"
               {...register("date")}
-              className="rounded-md border border-[#333] bg-[#161B22] px-2 py-1.5 text-white"
+              className="block w-full rounded-md border border-[#333] bg-[#161B22] px-2 py-1.5 text-white"
             />
           </div>
 
@@ -105,7 +105,7 @@ const EditTask = () => {
             <label className="text-[#999]">Description</label>
             <input
               {...register("description")}
-              className="rounded-md border border-[#333] bg-[#161B22] px-2 py-1.5 text-white"
+              className="block w-full rounded-md border border-[#333] bg-[#161B22] px-2 py-1.5 text-white"
             />
           </div>
 
