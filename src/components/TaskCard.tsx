@@ -1,5 +1,6 @@
 import {
   ArrowPathIcon,
+  CalendarIcon,
   CheckCircleIcon,
   ChevronDownIcon,
   PencilSquareIcon,
@@ -61,7 +62,19 @@ const TaskCard = ({ task, user }: Props) => {
               <p className="text-base md:text-lg">{task.title}</p>
             )}
 
-            <p className="text-xs text-[#999]">{task.date}</p>
+            <div className="flex flex-row items-center space-x-2">
+              {task.date && (
+                <CalendarIcon
+                  className={`h-3 w-3 ${
+                    new Date(task.date) < new Date()
+                      ? "fill-red-600"
+                      : "fill-[#999]"
+                  }`}
+                />
+              )}
+
+              <p className="text-xs text-[#999]">{task.date}</p>
+            </div>
           </div>
         </div>
         <div className="flex items-center space-x-3">

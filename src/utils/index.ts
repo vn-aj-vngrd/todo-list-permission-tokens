@@ -6,11 +6,9 @@ export const verifyPermission = (
   permissionToken: string,
   permission: string
 ) => {
-  if (!permissionToken) return false;
-
+  if (!permissionToken || !permission) return false;
   const decodedToken = window.atob(permissionToken.split(".")[1] as string);
   const parsedToken = JSON.parse(decodedToken) as PermissionToken;
-  console.log(parsedToken);
   return parsedToken[permission] as boolean;
 };
 
