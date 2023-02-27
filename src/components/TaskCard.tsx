@@ -7,7 +7,7 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/solid";
 import { useState } from "react";
-import { useAppStore } from "~/lib";
+import { useStore } from "~/lib";
 import { type User } from "~/lib/slices/createAuthSlice";
 import { type Task } from "~/lib/slices/createTaskSlice";
 import { verifyPermission } from "~/utils";
@@ -24,7 +24,7 @@ const TaskCard = ({ task, user }: Props) => {
     deleteTask,
     restoreTask,
     handleTaskEdit,
-  } = useAppStore();
+  } = useStore();
 
   const [showDescription, setShowDescription] = useState(false);
 
@@ -33,7 +33,7 @@ const TaskCard = ({ task, user }: Props) => {
   };
 
   return (
-    <div className="flex-col items-center  rounded-md border border-[#333] bg-[#1F2937] px-4 py-2">
+    <div className="flex-col items-center rounded-md border border-[#333] bg-[#1F2937] px-4 py-2">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
           {task.isCompleted ? (
@@ -43,7 +43,7 @@ const TaskCard = ({ task, user }: Props) => {
               }}
               disabled={!verifyPermission(user?.permissionToken, "TASK_UPDATE")}
             >
-              <CheckCircleIcon className="h-5 w-5 cursor-pointer rounded-full border border-[#999]" />
+              <CheckCircleIcon className="h-5 w-5 cursor-pointer rounded-full border border-[#999] fill-green-500" />
             </button>
           ) : (
             <button

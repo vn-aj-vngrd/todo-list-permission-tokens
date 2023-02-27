@@ -1,7 +1,9 @@
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { useEffect } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { useAppStore } from "~/lib";
+import { useStore } from "~/lib";
+import { type User } from "~/lib/slices/createAuthSlice";
+import { verifyPermission } from "~/utils";
 
 type FormValues = {
   title: string;
@@ -9,8 +11,12 @@ type FormValues = {
   date: string;
 };
 
-const AddTask = () => {
-  const { addTask, tasks } = useAppStore();
+type Props = {
+  user: User;
+};
+
+const AddTask = ({ user }: Props) => {
+  const { addTask, tasks } = useStore();
   const { register, handleSubmit, reset, watch } = useForm<FormValues>();
 
   useEffect(() => {
@@ -33,29 +39,33 @@ const AddTask = () => {
     });
   };
 
+  if (!verifyPermission(user?.permissionToken, "TASK_CREATE")) return null;
+
   return (
-    <div className="absolute bottom-4 w-full px-4">
-      <div className="w-full flex-1 items-center rounded-md border border-[#333] bg-[#161B22] px-4 py-3">
-        <form onSubmit={handleSubmit(onSubmit)} className="flex items-center">
-          <button type="submit" disabled={watch("title") === ""}>
-            <PlusCircleIcon
-              className={`mr-3 h-7 w-7 ${
-                watch("title") === "" ? "fill-[#999]" : "fill-white"
-              }`}
-            />
-          </button>
+    <div className="absolute bottom-0 w-full rounded-b-lg bg-[#0E1117]">
+      <div className=" px-4 pb-4">
+        <div className="w-full flex-1 items-center rounded-md border border-[#333] bg-[#161B22] px-4 py-3">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex items-center">
+            <button type="submit" disabled={watch("title") === ""}>
+              <PlusCircleIcon
+                className={`mr-3 h-7 w-7 ${
+                  watch("title") === "" ? "fill-[#999]" : "fill-white"
+                }`}
+              />
+            </button>
 
-          <div className="flex-1">
-            <input
-              {...register("title")}
-              autoComplete="off"
-              className="w-full text-sm md:text-base"
-              placeholder="Add a task"
-            />
-          </div>
+            <div className="flex-1">
+              <input
+                {...register("title")}
+                autoComplete="off"
+                className="w-full text-sm md:text-base"
+                placeholder="Add a task"
+              />
+            </div>
 
-          <input {...register("date")} type="date" className="ml-3" />
-        </form>
+            <input {...register("date")} type="date" className="ml-3" />
+          </form>
+        </div>
       </div>
     </div>
   );

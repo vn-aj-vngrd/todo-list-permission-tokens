@@ -1,7 +1,7 @@
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { useEffect } from "react";
 import { type Resolver, useForm, type SubmitHandler } from "react-hook-form";
-import { useAppStore } from "~/lib";
+import { useStore } from "~/lib";
 import OutsideClickHandler from "react-outside-click-handler";
 
 type FormValues = {
@@ -25,7 +25,7 @@ const resolver: Resolver<FormValues> = (values) => {
 };
 
 const EditTask = () => {
-  const { handleShowEditTask, taskEdit, updateTask } = useAppStore();
+  const { handleShowEditTask, taskEdit, updateTask } = useStore();
 
   const {
     register,
@@ -59,7 +59,6 @@ const EditTask = () => {
       isDeleted: taskEdit?.isCompleted || false,
     });
     handleShowEditTask(false);
-    console.log(data);
   };
 
   return (

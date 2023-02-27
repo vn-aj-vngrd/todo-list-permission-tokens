@@ -5,7 +5,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 type StoreState = AuthSlice & TaskSlice;
 
-export const useAppStore = create<StoreState>()(
+export const useStore = create<StoreState>()(
   persist(
     (set, get, api) => ({
       ...createAuthSlice(set, get, api),

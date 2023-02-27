@@ -1,8 +1,8 @@
 import { getGreetings } from "~/utils";
-import { useAppStore } from "../lib";
+import { useStore } from "../lib";
 
 const TaskHeader = () => {
-  const { user, handleShowEditTask, logout } = useAppStore();
+  const { user, handleShowEditTask, logout } = useStore();
 
   return (
     <div className="flex items-center justify-between rounded-t-lg border-b border-[#333] bg-[#161B22] py-4 px-4">
@@ -22,7 +22,7 @@ const TaskHeader = () => {
             <span className="absolute inline-flex h-3.5 w-3.5 animate-ping rounded-full bg-green-400 opacity-75"></span>
             <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500"></span>
           </span>
-          <p className="text-sm font-bold md:text-xl">{user?.role}</p>
+          <p className="text-base font-bold md:text-xl">{user?.role}</p>
         </div>
         <button
           className="flex cursor-pointer text-xs md:text-sm"

@@ -5,7 +5,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { usersData } from "~/data";
-import { useAppStore } from "~/lib";
+import { useStore } from "~/lib";
 import { type User } from "~/lib/slices/createAuthSlice";
 
 const roles = [
@@ -30,7 +30,7 @@ const roles = [
 
 const Login = () => {
   const [isShowInformation, setIsShowInformation] = useState(false);
-  const { login } = useAppStore();
+  const { login } = useStore();
 
   const handleShowInformation = () => {
     setIsShowInformation(!isShowInformation);
