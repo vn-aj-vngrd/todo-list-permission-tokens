@@ -1,7 +1,7 @@
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { useEffect } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { useAppStore } from "~/store";
+import { useAppStore } from "~/lib";
 
 type FormValues = {
   title: string;

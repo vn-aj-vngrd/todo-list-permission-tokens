@@ -1,7 +1,7 @@
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { useEffect } from "react";
 import { type Resolver, useForm, type SubmitHandler } from "react-hook-form";
-import { useAppStore } from "~/store";
+import { useAppStore } from "~/lib";
 import OutsideClickHandler from "react-outside-click-handler";
 
 type FormValues = {

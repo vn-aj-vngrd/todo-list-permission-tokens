@@ -28,7 +28,8 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    "src/components/SwitchAccount.txt"
+    "src/components/SwitchAccount.txt",
+    "bin/SwitchAccount.xt"
   ],
   "exclude": ["node_modules"]
 }

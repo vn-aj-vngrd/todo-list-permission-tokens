@@ -44,35 +44,17 @@ export const tasksData = [
 export const usersData = [
   {
     role: "Guest",
-    permissions: {
-      TASK_CREATE: false,
-      TASK_READ: true,
-      TASK_UPDATE: false,
-      TASK_DELETE: false,
-      TASK_VIEW_DELETED: false,
-      TASK_RESTORE: false,
-    },
+    permissionToken:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJUQVNLX0NSRUFURSI6ZmFsc2UsIlRBU0tfUkVBRCI6dHJ1ZSwiVEFTS19VUERBVEUiOmZhbHNlLCJUQVNLX0RFTEVURSI6ZmFsc2UsIlRBU0tfVklFV19ERUxFVEVEIjpmYWxzZSwiVEFTS19SRVNUT1JFIjpmYWxzZX0.I2sZQXHw2lQ2wHHjYzKJfndkEYo7GZfwE2Jn8JdOENQ",
   },
   {
     role: "User",
-    permissions: {
-      TASK_CREATE: true,
-      TASK_READ: true,
-      TASK_UPDATE: true,
-      TASK_DELETE: true,
-      TASK_VIEW_DELETED: false,
-      TASK_RESTORE: false,
-    },
+    permissionToken:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJUQVNLX0NSRUFURSI6dHJ1ZSwiVEFTS19SRUFEIjp0cnVlLCJUQVNLX1VQREFURSI6dHJ1ZSwiVEFTS19ERUxFVEUiOnRydWUsIlRBU0tfVklFV19ERUxFVEVEIjpmYWxzZSwiVEFTS19SRVNUT1JFIjpmYWxzZX0.bLDMSqhJbD9buzPbzO7_ncCZd1KDoD_s1PqUQ172q3M",
   },
   {
     role: "Admin",
-    permissions: {
-      TASK_CREATE: true,
-      TASK_READ: true,
-      TASK_UPDATE: true,
-      TASK_DELETE: true,
-      TASK_VIEW_DELETED: true,
-      TASK_RESTORE: true,
-    },
+    permissionToken:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJUQVNLX0NSRUFURSI6dHJ1ZSwiVEFTS19SRUFEIjp0cnVlLCJUQVNLX1VQREFURSI6dHJ1ZSwiVEFTS19ERUxFVEUiOnRydWUsIlRBU0tfVklFV19ERUxFVEVEIjp0cnVlLCJUQVNLX1JFU1RPUkUiOnRydWV9.H6bC7sANoL2m4AiNBZzqVTXtM3BOjIPts4wU58O7tHw",
   },
 ];

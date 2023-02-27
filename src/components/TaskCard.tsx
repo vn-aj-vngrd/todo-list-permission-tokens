@@ -6,9 +6,9 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/solid";
 import { useState } from "react";
-import { useAppStore } from "~/store";
-import { type User } from "~/store/slices/createAuthSlice";
-import { type Task } from "~/store/slices/createTaskSlice";
+import { useAppStore } from "~/lib";
+import { type User } from "~/lib/slices/createAuthSlice";
+import { type Task } from "~/lib/slices/createTaskSlice";
 import { verifyPermission } from "~/utils";
 
 type Props = {
@@ -40,7 +40,7 @@ const TaskCard = ({ task, user }: Props) => {
               onClick={() => {
                 updateTask({ ...task, isCompleted: false });
               }}
-              disabled={!verifyPermission(user?.permissions, "TASK_UPDATE")}
+              disabled={!verifyPermission(user?.permissionToken, "TASK_UPDATE")}
             >
               <CheckCircleIcon className="h-5 w-5 cursor-pointer rounded-full border border-[#999]" />
             </button>
@@ -49,7 +49,7 @@ const TaskCard = ({ task, user }: Props) => {
               onClick={() => {
                 updateTask({ ...task, isCompleted: true });
               }}
-              disabled={!verifyPermission(user?.permissions, "TASK_UPDATE")}
+              disabled={!verifyPermission(user?.permissionToken, "TASK_UPDATE")}
               className="h-5 w-5 rounded-full border border-[#999] bg-transparent"
             />
           )}
@@ -65,7 +65,7 @@ const TaskCard = ({ task, user }: Props) => {
           </div>
         </div>
         <div className="flex items-center space-x-3">
-          {verifyPermission(user?.permissions, "TASK_UPDATE") && (
+          {verifyPermission(user?.permissionToken, "TASK_UPDATE") && (
             <button
               onClick={() => {
                 handleTaskEdit(task);
@@ -78,7 +78,7 @@ const TaskCard = ({ task, user }: Props) => {
 
           {task.isDeleted ? (
             <>
-              {verifyPermission(user?.permissions, "TASK_RESTORE") && (
+              {verifyPermission(user?.permissionToken, "TASK_RESTORE") && (
                 <button
                   onClick={() => {
                     restoreTask(task.id);
@@ -90,7 +90,7 @@ const TaskCard = ({ task, user }: Props) => {
             </>
           ) : (
             <>
-              {verifyPermission(user?.permissions, "TASK_DELETE") && (
+              {verifyPermission(user?.permissionToken, "TASK_DELETE") && (
                 <button
                   onClick={() => {
                     deleteTask(task.id);

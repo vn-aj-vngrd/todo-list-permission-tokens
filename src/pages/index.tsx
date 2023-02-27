@@ -3,12 +3,12 @@ import Meta from "~/components/Meta";
 import TaskCard from "~/components/TaskCard";
 import TaskHeader from "~/components/TaskHeader";
 import AddTask from "~/components/AddTask";
-import { useAppStore } from "~/store";
+import { useAppStore } from "~/lib";
 import EditTask from "~/components/EditTask";
 import { verifyPermission } from "~/utils";
 import { useEffect, useState } from "react";
 import Login from "~/components/Login";
-import { type User } from "~/store/slices/createAuthSlice";
+import { type User } from "~/lib/slices/createAuthSlice";
 
 const categories = [
   {
@@ -57,7 +57,10 @@ const Home: NextPage = () => {
                 .filter(
                   (category) =>
                     category.name !== "Deleted" ||
-                    verifyPermission(userData?.permissions, "TASK_VIEW_DELETED")
+                    verifyPermission(
+                      userData?.permissionToken,
+                      "TASK_VIEW_DELETED"
+                    )
                 )
                 .map((_category, id) => (
                   <button
@@ -75,7 +78,7 @@ const Home: NextPage = () => {
                 ))}
             </div>
 
-            {verifyPermission(userData?.permissions, "TASK_READ") && (
+            {verifyPermission(userData?.permissionToken, "TASK_READ") && (
               <div className="mt-4 flex h-[390px] flex-col space-y-4 overflow-auto px-4">
                 {tasks
                   ?.filter(
@@ -96,7 +99,7 @@ const Home: NextPage = () => {
               </div>
             )}
 
-            {verifyPermission(userData?.permissions, "TASK_CREATE") && (
+            {verifyPermission(userData?.permissionToken, "TASK_CREATE") && (
               <AddTask />
             )}
           </div>

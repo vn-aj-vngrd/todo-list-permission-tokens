@@ -1,12 +1,8 @@
 import { type StateCreator } from "zustand";
 
-export interface Permissions {
-  [key: string]: boolean;
-}
-
 export interface User {
   role: string;
-  permissions: Permissions;
+  permissionToken: string;
 }
 
 export interface AuthSlice {

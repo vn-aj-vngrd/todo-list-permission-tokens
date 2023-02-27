@@ -5,8 +5,8 @@ import {
 } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { usersData } from "~/data";
-import { useAppStore } from "~/store";
-import { type User } from "~/store/slices/createAuthSlice";
+import { useAppStore } from "~/lib";
+import { type User } from "~/lib/slices/createAuthSlice";
 
 const roles = [
   {

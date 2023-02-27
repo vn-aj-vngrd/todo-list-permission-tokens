@@ -1,8 +1,27 @@
-import { type Permissions } from "~/store/slices/createAuthSlice";
+type PermissionToken = {
+  [key: string]: boolean;
+};
 
 export const verifyPermission = (
-  permissions: Permissions,
+  permissionToken: string,
   permission: string
 ) => {
-  return permissions[permission] as boolean;
+  if (!permissionToken) return false;
+
+  const decodedToken = window.atob(permissionToken.split(".")[1] as string);
+  const parsedToken = JSON.parse(decodedToken) as PermissionToken;
+  console.log(parsedToken);
+  return parsedToken[permission] as boolean;
+};
+
+export const getGreetings = () => {
+  const date = new Date();
+  const hours = date.getHours();
+  if (hours < 12) {
+    return "Good morning";
+  } else if (hours < 18) {
+    return "Good afternoon";
+  } else {
+    return "Good evening";
+  }
 };
