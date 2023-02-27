@@ -1,4 +1,4 @@
-export const taskData = [
+export const tasksData = [
   {
     id: "1",
     title: "Doctors Appointment",
@@ -41,31 +41,38 @@ export const taskData = [
   },
 ];
 
-export const accountData = [
+export const usersData = [
   {
-    id: "1",
-    accountType: "Admin",
-    description:
-      "Admin can create, update, read, delete, read deleted and restore tasks.",
-    permissions: [
-      "TASK_CREATE",
-      "TASK_READ",
-      "TASK_UPDATE",
-      "TASK_DELETE",
-      "TASK_VIEW_DELETED",
-      "TASK_RESTORE",
-    ],
+    role: "Guest",
+    permissions: {
+      TASK_CREATE: false,
+      TASK_READ: true,
+      TASK_UPDATE: false,
+      TASK_DELETE: false,
+      TASK_VIEW_DELETED: false,
+      TASK_RESTORE: false,
+    },
   },
   {
-    id: "2",
-    accountType: "User",
-    description: "User can create, update and read tasks.",
-    permissions: ["TASK_CREATE", "TASK_UPDATE", "TASK_READ"],
+    role: "User",
+    permissions: {
+      TASK_CREATE: true,
+      TASK_READ: true,
+      TASK_UPDATE: true,
+      TASK_DELETE: true,
+      TASK_VIEW_DELETED: false,
+      TASK_RESTORE: false,
+    },
   },
   {
-    id: "3",
-    accountType: "Guest",
-    description: "Guest can only read tasks.",
-    permissions: ["TASK_READ"],
+    role: "Admin",
+    permissions: {
+      TASK_CREATE: true,
+      TASK_READ: true,
+      TASK_UPDATE: true,
+      TASK_DELETE: true,
+      TASK_VIEW_DELETED: true,
+      TASK_RESTORE: true,
+    },
   },
 ];

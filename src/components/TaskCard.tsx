@@ -7,22 +7,22 @@ import {
 } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { useAppStore } from "~/store";
+import { type User } from "~/store/slices/createAuthSlice";
 import { type Task } from "~/store/slices/createTaskSlice";
 import { verifyPermission } from "~/utils";
 
 type Props = {
   task: Task;
+  user: User;
 };
 
-const TaskCard = ({ task }: Props) => {
+const TaskCard = ({ task, user }: Props) => {
   const {
     handleShowEditTask,
-    handleShowSwitchAccount,
     updateTask,
     deleteTask,
     restoreTask,
     handleTaskEdit,
-    user,
   } = useAppStore();
 
   const [showDescription, setShowDescription] = useState(false);
@@ -40,9 +40,7 @@ const TaskCard = ({ task }: Props) => {
               onClick={() => {
                 updateTask({ ...task, isCompleted: false });
               }}
-              disabled={
-                !verifyPermission(user?.permissions as string[], "TASK_UPDATE")
-              }
+              disabled={!verifyPermission(user?.permissions, "TASK_UPDATE")}
             >
               <CheckCircleIcon className="h-5 w-5 cursor-pointer rounded-full border border-[#999]" />
             </button>
@@ -51,9 +49,7 @@ const TaskCard = ({ task }: Props) => {
               onClick={() => {
                 updateTask({ ...task, isCompleted: true });
               }}
-              disabled={
-                !verifyPermission(user?.permissions as string[], "TASK_UPDATE")
-              }
+              disabled={!verifyPermission(user?.permissions, "TASK_UPDATE")}
               className="h-5 w-5 rounded-full border border-[#999] bg-transparent"
             />
           )}
@@ -69,11 +65,10 @@ const TaskCard = ({ task }: Props) => {
           </div>
         </div>
         <div className="flex items-center space-x-3">
-          {verifyPermission(user?.permissions as string[], "TASK_UPDATE") && (
+          {verifyPermission(user?.permissions, "TASK_UPDATE") && (
             <button
               onClick={() => {
                 handleTaskEdit(task);
-                handleShowSwitchAccount(false);
                 handleShowEditTask(true);
               }}
             >
@@ -83,10 +78,7 @@ const TaskCard = ({ task }: Props) => {
 
           {task.isDeleted ? (
             <>
-              {verifyPermission(
-                user?.permissions as string[],
-                "TASK_RESTORE"
-              ) && (
+              {verifyPermission(user?.permissions, "TASK_RESTORE") && (
                 <button
                   onClick={() => {
                     restoreTask(task.id);
@@ -98,10 +90,7 @@ const TaskCard = ({ task }: Props) => {
             </>
           ) : (
             <>
-              {verifyPermission(
-                user?.permissions as string[],
-                "TASK_DELETE"
-              ) && (
+              {verifyPermission(user?.permissions, "TASK_DELETE") && (
                 <button
                   onClick={() => {
                     deleteTask(task.id);

@@ -6,7 +6,7 @@ import {
 import { useEffect, useState } from "react";
 import { useAppStore } from "~/store";
 import OutsideClickHandler from "react-outside-click-handler";
-import { accountData } from "~/data";
+import { accountsData } from "~/data";
 
 const SwitchAccount = () => {
   const { user, setUser, handleShowSwitchAccount } = useAppStore();
@@ -39,7 +39,7 @@ const SwitchAccount = () => {
           <h3 className="font-bold">Switch Account</h3>
         </div>
         <div className="space-y-4 py-4 px-4">
-          {accountData?.map((account, i) => (
+          {accountsData?.map((account, i) => (
             <div
               key={i}
               className={`relative w-full flex-col items-center space-y-1 rounded-md border border-[#333] px-4 py-2  ${

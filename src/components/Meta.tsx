@@ -6,16 +6,16 @@ type Props = {
   title?: string;
 };
 
-const Meta = ({ title = "My Tasks - Vanguardia" }: Props) => {
+const Meta = ({ title = "NextTask - Vanguardia" }: Props) => {
   return (
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-      <meta name="title" content="My Tasks - Vanguardia" />
+      <meta name="title" content="NextTask - Vanguardia" />
       <meta
         name="description"
-        content="My Tasks is an open-source utility web application that allows users to keep track of their activities."
+        content="NextTask is an open-source utility web application that allows users to keep track of their activities."
       />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="English" />

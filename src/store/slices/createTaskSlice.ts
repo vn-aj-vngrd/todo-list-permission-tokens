@@ -1,5 +1,5 @@
 import { type StateCreator } from "zustand";
-import { taskData } from "../../data";
+import { tasksData } from "~/data";
 
 export interface Task {
   id: string;
@@ -23,7 +23,7 @@ export interface TaskSlice {
 }
 
 export const createTaskSlice: StateCreator<TaskSlice> = (set) => ({
-  tasks: taskData,
+  tasks: tasksData,
   addTask: (task) => {
     set((state) => ({
       tasks: [...state.tasks, task],

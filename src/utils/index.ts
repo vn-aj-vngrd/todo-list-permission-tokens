@@ -1,3 +1,8 @@
-export const verifyPermission = (permissions: string[], permission: string) => {
-  return permissions.includes(permission) ? true : false;
+import { type Permissions } from "~/store/slices/createAuthSlice";
+
+export const verifyPermission = (
+  permissions: Permissions,
+  permission: string
+) => {
+  return permissions[permission] as boolean;
 };
