@@ -4,11 +4,12 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useStore } from "~/lib";
 import { type User } from "~/lib/slices/createAuthSlice";
 import { verifyPermission } from "~/utils";
+import moment from "moment";
 
 type FormValues = {
   title: string;
   description: string;
-  date: string;
+  dueDate: string;
 };
 
 type Props = {
@@ -23,7 +24,7 @@ const AddTask = ({ user }: Props) => {
     reset({
       title: "",
       description: "",
-      date: "",
+      dueDate: "",
     });
   }, [reset, tasks]);
 
@@ -33,7 +34,9 @@ const AddTask = ({ user }: Props) => {
       id: (tasks.length + 1).toString(),
       title: data.title,
       description: "",
-      date: data.date,
+      dueDate: data.dueDate,
+      createdDate: moment().format("YYYY-MM-DD"),
+      completedDate: "",
       isCompleted: false,
       isDeleted: false,
     });
@@ -63,7 +66,7 @@ const AddTask = ({ user }: Props) => {
               />
             </div>
 
-            <input {...register("date")} type="date" className="ml-3" />
+            <input {...register("dueDate")} type="date" className="ml-3" />
           </form>
         </div>
       </div>

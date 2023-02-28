@@ -55,7 +55,8 @@ const EditTask = () => {
       description: data.description,
       title: data.title,
       dueDate: data.dueDate,
-      creationDate: taskEdit?.creationDate || "",
+      createdDate: taskEdit?.createdDate || "",
+      completedDate: "",
       isCompleted: taskEdit?.isCompleted || false,
       isDeleted: taskEdit?.isCompleted || false,
     });

@@ -162,7 +162,7 @@ const Home: NextPage = () => {
                       if (sortItem?.value === "due") {
                         return a.dueDate.localeCompare(b.dueDate);
                       } else if (sortItem?.value === "creation") {
-                        return a.creationDate.localeCompare(b.creationDate);
+                        return a.createdDate.localeCompare(b.createdDate);
                       } else if (sortItem?.value === "title") {
                         return a.title.localeCompare(b.title);
                       } else return 0;

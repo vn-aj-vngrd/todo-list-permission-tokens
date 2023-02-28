@@ -5,7 +5,8 @@ export interface Task {
   id: string;
   title: string;
   dueDate: string;
-  creationDate: string;
+  createdDate: string;
+  completedDate: string;
   description: string;
   isCompleted: boolean;
   isDeleted: boolean;

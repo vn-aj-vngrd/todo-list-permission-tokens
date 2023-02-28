@@ -12,6 +12,7 @@ import { useStore } from "~/lib";
 import { type User } from "~/lib/slices/createAuthSlice";
 import { type Task } from "~/lib/slices/createTaskSlice";
 import { verifyPermission } from "~/utils";
+import moment from "moment";
 
 type Props = {
   task: Task;
@@ -45,7 +46,11 @@ const TaskCard = ({ task, user }: Props) => {
             <button
               onClick={(event) => {
                 event.stopPropagation();
-                updateTask({ ...task, isCompleted: false });
+                updateTask({
+                  ...task,
+                  isCompleted: false,
+                  completedDate: "",
+                });
               }}
               disabled={!verifyPermission(user?.permissionToken, "TASK_UPDATE")}
             >
@@ -55,7 +60,11 @@ const TaskCard = ({ task, user }: Props) => {
             <button
               onClick={(event) => {
                 event.stopPropagation();
-                updateTask({ ...task, isCompleted: true });
+                updateTask({
+                  ...task,
+                  isCompleted: true,
+                  completedDate: moment().format("YYYY-MM-DD"),
+                });
               }}
               disabled={!verifyPermission(user?.permissionToken, "TASK_UPDATE")}
               className="h-5 w-5 rounded-full border border-[#999] bg-transparent hover:border-white"
@@ -69,7 +78,7 @@ const TaskCard = ({ task, user }: Props) => {
               <p className="text-base md:text-lg">{task.title}</p>
             )}
 
-            <div className="flex flex-row items-center space-x-2">
+            <div className="flex flex-row items-center space-x-1.5">
               {task.dueDate && (
                 <CalendarIcon
                   className={`h-3 w-3 ${
@@ -80,7 +89,15 @@ const TaskCard = ({ task, user }: Props) => {
                 />
               )}
 
-              <p className="text-xs text-[#999]">{task.dueDate}</p>
+              <p
+                className={`text-[12px] text-[#999] ${
+                  new Date(task.dueDate) < new Date()
+                    ? "text-red-600"
+                    : "text-[#999]"
+                }`}
+              >
+                {task.dueDate && moment(task.dueDate).format("DD MMM YYYY")}
+              </p>
             </div>
           </div>
         </div>
@@ -159,9 +176,21 @@ const TaskCard = ({ task, user }: Props) => {
       </div>
 
       {isShowDescription && (
-        <div className="ml-9 mt-1 flex justify-between transition-all duration-200 ease-in">
-          <h5 className="text-sm">{task.description}</h5>
-          <p className="text-xs">Date Created: {task.creationDate}</p>
+        <div className="ml-9 mt-1 flex items-center justify-between">
+          <h5 className="text-sm">
+            {task.description ? task.description : "No description available"}
+          </h5>
+          <p className="text-xs">
+            {task.isCompleted ? (
+              <span>
+                Completed at {moment(task.completedDate).format("DD MMM YYYY")}
+              </span>
+            ) : (
+              <span>
+                Created at {moment(task.createdDate).format("DD MMM YYYY")}
+              </span>
+            )}
+          </p>
         </div>
       )}
     </div>
