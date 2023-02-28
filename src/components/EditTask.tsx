@@ -7,7 +7,7 @@ import OutsideClickHandler from "react-outside-click-handler";
 type FormValues = {
   title: string;
   description: string;
-  date: string;
+  dueDate: string;
 };
 
 const resolver: Resolver<FormValues> = (values) => {
@@ -36,7 +36,7 @@ const EditTask = () => {
     defaultValues: {
       title: taskEdit?.title || "",
       description: taskEdit?.description || "",
-      date: taskEdit?.date || "",
+      dueDate: taskEdit?.dueDate || "",
     },
     resolver,
   });
@@ -45,7 +45,7 @@ const EditTask = () => {
     reset({
       title: taskEdit?.title || "",
       description: taskEdit?.description || "",
-      date: taskEdit?.date || "",
+      dueDate: taskEdit?.dueDate || "",
     });
   }, [reset, taskEdit]);
 
@@ -54,7 +54,8 @@ const EditTask = () => {
       id: taskEdit?.id as string,
       description: data.description,
       title: data.title,
-      date: data.date,
+      dueDate: data.dueDate,
+      creationDate: taskEdit?.creationDate || "",
       isCompleted: taskEdit?.isCompleted || false,
       isDeleted: taskEdit?.isCompleted || false,
     });
@@ -95,7 +96,7 @@ const EditTask = () => {
 
             <input
               type="date"
-              {...register("date")}
+              {...register("dueDate")}
               className="block w-full rounded-md border border-[#333] bg-[#161B22] px-2 py-1.5 text-white"
             />
           </div>
@@ -110,7 +111,7 @@ const EditTask = () => {
 
           <div className="absolute bottom-4 w-full">
             <button
-              className="flex w-[90%] items-center justify-center rounded-md border border-[#333] bg-[#161B22] px-4 py-3.5 hover:bg-[#1F2937]"
+              className="flex w-[90%] items-center justify-center rounded-md border border-[#333] bg-[#161B22] px-4 py-3.5 hover:border-white hover:bg-[#1F2937]"
               type="submit"
             >
               Save Changes

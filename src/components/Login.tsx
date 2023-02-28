@@ -55,7 +55,7 @@ const Login = () => {
           {roles.map((role, key) => (
             <button
               onClick={() => login(role.user as User)}
-              className="flex w-full flex-col rounded-md border border-[#333] bg-[#161B22] px-4 py-2 hover:bg-[#1F2937]"
+              className="flex w-full flex-col rounded-md border border-[#333] bg-[#161B22] px-4 py-2 hover:border-[#999] hover:bg-[#1F2937]"
               key={key}
             >
               <div className="flex w-full items-center justify-between">

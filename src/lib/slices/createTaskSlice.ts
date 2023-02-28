@@ -4,7 +4,8 @@ import { tasksData } from "~/data";
 export interface Task {
   id: string;
   title: string;
-  date: string;
+  dueDate: string;
+  creationDate: string;
   description: string;
   isCompleted: boolean;
   isDeleted: boolean;
@@ -12,9 +13,11 @@ export interface Task {
 
 export interface TaskSlice {
   tasks: Task[];
+  getUserTasks: () => Task[];
   addTask: (task: Task) => void;
   updateTask: (task: Task) => void;
-  deleteTask: (id: string) => void;
+  softDeleteTask: (id: string) => void;
+  hardDeleteTask: (id: string) => void;
   restoreTask: (id: string) => void;
   isShowEditTask: boolean;
   handleShowEditTask: (b: boolean) => void;
@@ -24,6 +27,9 @@ export interface TaskSlice {
 
 export const createTaskSlice: StateCreator<TaskSlice> = (set) => ({
   tasks: tasksData,
+  getUserTasks: () => {
+    return tasksData.filter((t) => !t.isDeleted);
+  },
   addTask: (task) => {
     set((state) => ({
       tasks: [...state.tasks, task],
@@ -34,11 +40,16 @@ export const createTaskSlice: StateCreator<TaskSlice> = (set) => ({
       tasks: state.tasks.map((t) => (t.id === task.id ? task : t)),
     }));
   },
-  deleteTask: (id) => {
+  softDeleteTask: (id) => {
     set((state) => ({
       tasks: state.tasks.map((t) =>
         t.id === id ? { ...t, isDeleted: true } : t
       ),
+    }));
+  },
+  hardDeleteTask: (id) => {
+    set((state) => ({
+      tasks: state.tasks.filter((t) => t.id !== id),
     }));
   },
   restoreTask: (id) => {
