@@ -37,7 +37,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-full max-w-xl flex-1 flex-col items-center justify-center rounded-lg border border-[#333] md:h-[400px] md:flex-row">
+    <div className="flex h-full max-w-xl flex-1 flex-col items-center justify-center rounded-lg border border-[#333] transition-all duration-200 ease-in-out md:h-[400px] md:flex-row">
       <div className="flex w-full flex-col justify-between rounded-t-lg border-b border-r-0 border-[#333] bg-[#161B22] p-4 md:h-full md:w-[35%] md:rounded-l-lg md:rounded-tr-none md:border-r md:border-b-0">
         <h3 className="text-2xl font-bold md:text-4xl">
           Sign in to your account.
@@ -50,7 +50,7 @@ const Login = () => {
           </span>
         </h3>
       </div>
-      <div className="flex h-full w-full flex-col justify-between rounded-b-lg bg-[#0E1117] p-4 md:w-[65%] md:rounded-r-lg md:rounded-bl-none">
+      <div className="flex h-full w-full flex-col justify-between rounded-b-lg bg-[#0E1117] p-4 transition-all duration-500 ease-in-out md:w-[65%] md:rounded-r-lg md:rounded-bl-none">
         <div className="flex w-full flex-col space-y-4 pt-4 md:pt-0">
           {roles.map((role, key) => (
             <button
@@ -63,11 +63,13 @@ const Login = () => {
                 <ArrowRightIcon className="h-4 w-4" />
               </div>
 
-              {isShowInformation && (
-                <p className="mr-5 mt-1 text-left text-xs text-[#A3A3A3]">
-                  {role.description}
-                </p>
-              )}
+              <p
+                className={`mr-5 mt-1 text-left text-xs text-[#A3A3A3] transition-all duration-500 ease-in-out ${
+                  isShowInformation ? "max-h-96" : "max-h-0 opacity-0"
+                }`}
+              >
+                {role.description}
+              </p>
             </button>
           ))}
         </div>

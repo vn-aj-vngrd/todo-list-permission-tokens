@@ -25,7 +25,8 @@ const resolver: Resolver<FormValues> = (values) => {
 };
 
 const EditTask = () => {
-  const { handleShowEditTask, taskEdit, updateTask } = useStore();
+  const { handleShowEditTask, taskEdit, updateTask, isShowEditTask } =
+    useStore();
 
   const {
     register,
@@ -64,7 +65,11 @@ const EditTask = () => {
   };
 
   return (
-    <div className="relative h-[626px] max-w-xs flex-1 rounded-lg border border-[#333] bg-[#0E1117]">
+    <div
+      className={`relative h-[626px] max-w-xs flex-1 rounded-lg border border-[#333] bg-[#0E1117] transition-all duration-500 ease-in-out ${
+        isShowEditTask ? " max-w-[#999px]" : " max-w-0 opacity-0"
+      }`}
+    >
       <OutsideClickHandler
         onOutsideClick={() => {
           handleShowEditTask(false);

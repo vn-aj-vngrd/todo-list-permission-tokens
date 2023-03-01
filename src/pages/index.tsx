@@ -74,14 +74,17 @@ const Home: NextPage = () => {
       {userData ? (
         <>
           <div
-            className={`relative h-[626px] max-w-5xl flex-1 rounded-lg border border-[#333] bg-[#0E1117]
+            className={`relative h-[626px] max-w-5xl flex-1 rounded-lg border border-[#333] bg-[#0E1117] transition-all duration-500 ease-in-out
           ${isShowEditTask ? "hidden md:block" : ""}
           `}
           >
+            {/* Header */}
             <TaskHeader />
 
-            <div>
+            {/* Body */}
+            <>
               <div className="flex items-center justify-between px-4 pt-4">
+                {/* Category */}
                 <div className="flex">
                   {categories
                     .filter(
@@ -109,6 +112,7 @@ const Home: NextPage = () => {
                       </button>
                     ))}
                 </div>
+                {/* Sort */}
                 <div>
                   <OutsideClickHandler
                     onOutsideClick={() => {
@@ -121,31 +125,35 @@ const Home: NextPage = () => {
                         className="h-5 w-5 fill-white"
                       />
                     </button>
-                    {isShowSort && (
-                      <div className="absolute right-5 flex flex-col space-y-2 rounded-md border border-[#333] bg-[#0E1117] p-3">
-                        {sortItems.map((item, id) => (
-                          <button
-                            key={id}
-                            onClick={() => {
-                              setSortItem(item);
-                              setShowSort(false);
-                            }}
-                            className={`flex items-center rounded-md border border-[#333] bg-[#161B22] px-2 py-2 text-start text-xs hover:border-[#999] ${
-                              sortItem === item ? "bg-[#1F2937]" : ""
-                            }`}
-                          >
-                            {item.icon}
-                            {item.name}
-                          </button>
-                        ))}
-                      </div>
-                    )}
+
+                    <div
+                      className={`duration-400 absolute right-4 flex flex-col space-y-2 rounded-md border border-[#333] bg-[#0E1117] p-3 transition-all ease-out ${
+                        isShowSort ? "z-20 max-h-96" : "z-0 max-h-0 opacity-0"
+                      }`}
+                    >
+                      {sortItems.map((item, id) => (
+                        <button
+                          key={id}
+                          onClick={() => {
+                            setSortItem(item);
+                            setShowSort(false);
+                          }}
+                          className={`flex items-center rounded-md border border-[#333] bg-[#161B22] px-2 py-2 text-start text-xs hover:border-[#999] ${
+                            sortItem === item ? "bg-[#1F2937]" : ""
+                          }`}
+                        >
+                          {item.icon}
+                          {item.name}
+                        </button>
+                      ))}
+                    </div>
                   </OutsideClickHandler>
                 </div>
               </div>
 
+              {/* Tasks */}
               {verifyPermission(userData?.permissionToken, "TASK_READ") && (
-                <div className="mt-4 flex max-h-[455px] flex-col space-y-4 overflow-auto px-4 pb-[65px]">
+                <div className="mt-4 flex max-h-[446px] flex-col space-y-4 overflow-auto px-4 pb-[63px]">
                   {tasks
                     ?.filter(
                       (task) =>
@@ -173,16 +181,18 @@ const Home: NextPage = () => {
                 </div>
               )}
 
+              {/* Add Task */}
               <AddTask user={userData} />
-            </div>
+            </>
           </div>
 
-          {isShowEditTask && <EditTask />}
+          {/* Footer*/}
+          <>
+            <EditTask />
+          </>
         </>
       ) : (
-        <>
-          <Login />
-        </>
+        <Login />
       )}
     </>
   );

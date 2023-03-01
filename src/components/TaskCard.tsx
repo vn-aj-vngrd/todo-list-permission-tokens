@@ -37,7 +37,7 @@ const TaskCard = ({ task, user }: Props) => {
 
   return (
     <div
-      className="cursor-pointer flex-col items-center rounded-md border border-[#333] bg-[#1F2937] px-4 py-2 hover:border-[#999]"
+      className="z-10 cursor-pointer flex-col items-center rounded-md border border-[#333] bg-[#1F2937] px-4 py-2 hover:border-[#999]"
       onClick={() => handleShowDescription()}
     >
       <div className="flex items-center justify-between">
@@ -175,24 +175,26 @@ const TaskCard = ({ task, user }: Props) => {
         </div>
       </div>
 
-      {isShowDescription && (
-        <div className="ml-9 mt-1 flex items-center justify-between">
-          <h5 className="text-sm">
-            {task.description ? task.description : "No description available"}
-          </h5>
-          <p className="text-xs">
-            {task.isCompleted ? (
-              <span>
-                Completed at {moment(task.completedDate).format("DD MMM YYYY")}
-              </span>
-            ) : (
-              <span>
-                Created at {moment(task.createdDate).format("DD MMM YYYY")}
-              </span>
-            )}
-          </p>
-        </div>
-      )}
+      <div
+        className={`ml-9 mt-1 flex items-center justify-between transition-all duration-500 ease-in-out ${
+          isShowDescription ? "max-h-96" : "max-h-0 opacity-0"
+        }`}
+      >
+        <h5 className="text-sm">
+          {task.description ? task.description : "No description available"}
+        </h5>
+        <p className="text-xs">
+          {task.isCompleted ? (
+            <span>
+              Completed at {moment(task.completedDate).format("DD MMM YYYY")}
+            </span>
+          ) : (
+            <span>
+              Created at {moment(task.createdDate).format("DD MMM YYYY")}
+            </span>
+          )}
+        </p>
+      </div>
     </div>
   );
 };

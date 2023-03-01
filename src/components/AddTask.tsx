@@ -45,7 +45,7 @@ const AddTask = ({ user }: Props) => {
   if (!verifyPermission(user?.permissionToken, "TASK_CREATE")) return null;
 
   return (
-    <div className="absolute bottom-0 w-full rounded-b-lg bg-[#0E1117]">
+    <div className="absolute bottom-0 z-30 w-full rounded-b-lg bg-[#0E1117]">
       <div className=" px-4 pb-4">
         <div className="w-full flex-1 items-center rounded-md border border-[#333] bg-[#161B22] px-4 py-3">
           <form onSubmit={handleSubmit(onSubmit)} className="flex items-center">
