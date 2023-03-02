@@ -9,7 +9,7 @@ import {
   CalendarIcon,
   PlusIcon,
 } from "@heroicons/react/24/solid";
-import Tasks from "~/sections/Tasks";
+import Task from "~/sections/Task";
 
 export type Category = {
   name: string;
@@ -77,7 +77,7 @@ const Home: NextPage = () => {
       <Meta />
 
       {userData ? (
-        <Tasks
+        <Task
           userData={userData}
           tasks={tasks}
           category={category as Category}

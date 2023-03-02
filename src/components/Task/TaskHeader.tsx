@@ -1,5 +1,5 @@
 import { getGreetings } from "~/utils";
-import { useStore } from "../lib";
+import { useStore } from "../../lib";
 
 const TaskHeader = () => {
   const { user, handleShowEditTask, logout } = useStore();

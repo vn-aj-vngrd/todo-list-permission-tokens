@@ -4,7 +4,7 @@ type Props = {
   title?: string;
 };
 
-const Meta = ({ title = "NextTask - Vanguardia" }: Props) => {
+const Meta = ({ title = "NextTask" }: Props) => {
   return (
     <Head>
       <title>{title}</title>

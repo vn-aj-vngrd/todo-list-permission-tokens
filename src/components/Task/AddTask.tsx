@@ -66,7 +66,12 @@ const AddTask = ({ user }: Props) => {
               />
             </div>
 
-            <input {...register("dueDate")} type="date" className="ml-3" />
+            <input
+              {...register("dueDate")}
+              autoComplete="off"
+              type="date"
+              className="ml-3"
+            />
           </form>
         </div>
       </div>

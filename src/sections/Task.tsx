@@ -3,8 +3,8 @@ import EditTask from "~/components/Task/EditTask";
 import { type User } from "~/lib/slices/createAuthSlice";
 import { type Task } from "~/lib/slices/createTaskSlice";
 import { type Category, type SortItem } from "~/pages";
-import TaskBody from "./TaskBody";
-import TaskHeader from "./TaskHeader";
+import TaskBody from "../components/Task/TaskBody";
+import TaskHeader from "../components/Task/TaskHeader";
 
 type Props = {
   userData: User;
@@ -20,7 +20,7 @@ type Props = {
   setSortItem: (sortItem: SortItem) => void;
 };
 
-const Tasks = ({
+const Task = ({
   userData,
   tasks,
   category,
@@ -62,4 +62,4 @@ const Tasks = ({
   );
 };
 
-export default Tasks;
+export default Task;

@@ -97,6 +97,7 @@ const EditTask = () => {
               <label className="text-[#999]">Title</label>
               <input
                 {...register("title")}
+                autoComplete="off"
                 className="block w-full rounded-md border border-[#333] bg-[#161B22] px-2 py-1.5 text-white"
               />
               {errors?.title && (
@@ -108,8 +109,9 @@ const EditTask = () => {
               <label className="text-[#999]">Date</label>
 
               <input
-                type="date"
                 {...register("dueDate")}
+                type="date"
+                autoComplete="off"
                 className="block w-full rounded-md border border-[#333] bg-[#161B22] px-2 py-1.5 text-white"
               />
             </div>
@@ -118,6 +120,7 @@ const EditTask = () => {
               <label className="text-[#999]">Description</label>
               <input
                 {...register("description")}
+                autoComplete="off"
                 className="block w-full rounded-md border border-[#333] bg-[#161B22] px-2 py-1.5 text-white"
               />
             </div>
