@@ -1,5 +1,5 @@
 import { type AppType } from "next/dist/shared/lib/utils";
-import Layout from "~/components/Layout";
+import Layout from "~/components/Common/Layout";
 
 import "~/styles/globals.css";
 
