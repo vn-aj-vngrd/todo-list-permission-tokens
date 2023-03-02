@@ -1,11 +1,6 @@
 import { type NextPage } from "next";
 import Meta from "~/components/Common/Meta";
-
-import TaskHeader from "~/sections/TaskHeader";
-import AddTask from "~/components/Task/AddTask";
 import { useStore } from "~/lib";
-import EditTask from "~/components/Task/EditTask";
-
 import { useEffect, useState } from "react";
 import Login from "~/sections/Login";
 import { type User } from "~/lib/slices/createAuthSlice";
@@ -14,8 +9,7 @@ import {
   CalendarIcon,
   PlusIcon,
 } from "@heroicons/react/24/solid";
-
-import TaskBody from "~/sections/TaskBody";
+import Tasks from "~/sections/Tasks";
 
 export type Category = {
   name: string;
@@ -83,31 +77,19 @@ const Home: NextPage = () => {
       <Meta />
 
       {userData ? (
-        <>
-          <div
-            className={`relative h-[626px] max-w-5xl flex-1 rounded-lg border border-[#333] bg-[#0E1117] transition-all duration-500 ease-in-out ${
-              isShowEditTask ? "hidden md:block" : ""
-            }
-          `}
-          >
-            <TaskHeader />
-            <TaskBody
-              categories={categories}
-              userData={userData}
-              tasks={tasks}
-              category={category as Category}
-              setCategory={setCategory}
-              sortItems={sortItems}
-              setShowSort={setShowSort}
-              isShowSort={isShowSort}
-              setSortItem={setSortItem}
-              sortItem={sortItem as SortItem}
-            />
-            <AddTask user={userData} />
-          </div>
-
-          <EditTask />
-        </>
+        <Tasks
+          userData={userData}
+          tasks={tasks}
+          category={category as Category}
+          categories={categories}
+          sortItem={sortItem as SortItem}
+          sortItems={sortItems}
+          isShowSort={isShowSort}
+          isShowEditTask={isShowEditTask}
+          setCategory={setCategory}
+          setShowSort={setShowSort}
+          setSortItem={setSortItem}
+        />
       ) : (
         <Login />
       )}
